@@ -1,0 +1,32 @@
+﻿@model Authentication_Application.ViewModels.TwoStepLoginViewModel
+@{
+    ViewData["Title"] = "Two Factor validation";
+}
+
+<h4>@ViewData["Title"]</h4>
+<div>
+    <ul class="list">
+        <li>
+            <p>
+                Please enter the two-factor validation code from your Authenticator app for User @Model.Username
+            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <form method="post" asp-action="LoginTwoStep">
+                        <div class="form-group">
+                            <label asp-for="Code" class="control-label">Validation Code</label>
+                            <input asp-for="Code" class="form-control" autocomplete="off" />
+                            <input asp-for="Username" hidden />
+                            <span asp-validation-for="Code" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary m-2">Validate</button>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    </form>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,0 +1,19 @@
+﻿@model Authentication_Application.Models.User
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <h2>@Model.Name</h2>
+    <h4>
+        @if (@Model.IsTwoFactorEnabled)
+        {
+            <a class="text-" asp-area="" asp-controller="Account" asp-action="DisableAuthenticator">Disable Two Factor Authentication</a>
+        }
+        else
+        {
+            <a class="text-success" asp-area="" asp-controller="Account" asp-action="EnableAuthenticator" asp-route-username="@Model.Username">Enable Two Factor Authentication</a>
+        }
+    </h4>
+</div>
